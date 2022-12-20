@@ -137,6 +137,12 @@ class EmojiTableViewController:  UITableViewController {
         return .none
     }
     
+    // Reload Data
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     
     /*
     // Override to support conditional rearranging of the table view.
