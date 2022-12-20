@@ -46,7 +46,17 @@
                             <outlet property="delegate" destination="fyL-cw-oMI" id="TID-ta-Y7w"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Emoji Dictionary" id="5cu-JU-3hI"/>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="mbS-VW-rGq"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Emoji Dictionary" id="5cu-JU-3hI">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="viQ-88-9cG">
+                            <connections>
+                                <action selector="editButtonTapped:" destination="fyL-cw-oMI" id="krp-dP-DTO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h6k-lq-bqZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

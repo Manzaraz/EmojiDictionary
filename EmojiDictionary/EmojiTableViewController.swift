@@ -52,7 +52,7 @@ class EmojiTableViewController:  UITableViewController {
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        navigationItem.leftBarButtonItem = editButtonItem
     }
 
     // MARK: - Table view data source
@@ -83,14 +83,25 @@ class EmojiTableViewController:  UITableViewController {
         content.text = "\(emoji.symbol) - \(emoji.name)"
         content.secondaryText = emoji.description
         cell.contentConfiguration = content
+        
+        cell.showsReorderControl = true
 
         // Return Cell
         return cell
+        
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let emoji = emojis[indexPath.row]
         print("\(emoji.symbol) \(indexPath)")
+    }
+    
+    
+    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
+        let tableViewEditingMode = tableView.isEditing
+        
+        tableView.setEditing(!tableViewEditingMode, animated: true)
     }
     
 
@@ -114,13 +125,19 @@ class EmojiTableViewController:  UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+        let movedEmoji = emojis.remove(at: fromIndexPath.row)
+        emojis.insert(movedEmoji, at: to.row)
     }
-    */
 
+    // Override to be able  to reorder items, not delet them
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+    
+    
     /*
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
