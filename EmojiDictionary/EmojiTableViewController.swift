@@ -41,12 +41,8 @@ class EmojiTableViewController:  UITableViewController {
        Emoji(symbol: "🥰", name: "I love it", description: "when you really like that idea", usage: "Love something, something you like to do"),
        Emoji(symbol: "🤨", name: "What's going on", description: "When something sounds not good", usage: "suspicius"),
        Emoji(symbol: "🏃🏻‍♂️", name: "Run forest", description: "When te mandan a cagar", usage: "sal de aquí estúpido")
-    ] 
+    ]
     
-    
-    
-   
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -73,23 +69,17 @@ class EmojiTableViewController:  UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //Step 1: Dequeueing cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EmojiCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EmojiCell", for: indexPath) as! EmojiTableViewCell
         
         //Step 2: Fetch the model objet to display
         let emoji = emojis[indexPath.row]
         
         //Step 3: Configure the Cell
-        var content = cell.defaultContentConfiguration()
-        content.text = "\(emoji.symbol) - \(emoji.name)"
-        content.secondaryText = emoji.description
-        cell.contentConfiguration = content
-        
+        cell.update(with: emoji)
         cell.showsReorderControl = true
 
         // Return Cell
         return cell
-        
-        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
