@@ -9,6 +9,11 @@ import UIKit
 
 class AddEditEmojiTableViewController: UITableViewController {
     
+    @IBOutlet var symbolTextField: UITextField!
+    @IBOutlet var nameTextField: UITextField!
+    @IBOutlet var descriptionTextField: UITextField!
+    @IBOutlet var usageTextField: UITextField!
+    
     var emoji: Emoji?
     
     init?(coder: NSCoder, emoji: Emoji? ) {
@@ -22,15 +27,24 @@ class AddEditEmojiTableViewController: UITableViewController {
     
     
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
+        
+        if let emoji = emoji {
+            symbolTextField.text = emoji.symbol
+            nameTextField.text = emoji.name
+            descriptionTextField.text = emoji.description
+            usageTextField.text = emoji.usage
+            title = "Edit Emoji"
+        } else {
+            title = "Add Emoji"
+        }
+        
     }
-
-    // MARK: - Table view data source
-
     
-
+    // MARK: - Table view data source
+    
+    
+    
 }

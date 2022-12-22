@@ -204,6 +204,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="2nf-d3-gPQ"/>
+                    <connections>
+                        <outlet property="descriptionTextField" destination="ja9-99-vg0" id="56N-yR-65E"/>
+                        <outlet property="nameTextField" destination="xNB-Qt-gia" id="BW2-1y-oyf"/>
+                        <outlet property="symbolTextField" destination="I7B-Jg-Fre" id="gib-jm-ame"/>
+                        <outlet property="usageTextField" destination="DZs-m4-ZHV" id="2Nr-CF-euS"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3D5-K4-tD1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
