@@ -57,6 +57,9 @@ class EmojiTableViewController:  UITableViewController {
         return 1
     }
 
+    
+    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 0 {
@@ -82,10 +85,20 @@ class EmojiTableViewController:  UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let emoji = emojis[indexPath.row]
-        print("\(emoji.symbol) \(indexPath)")
+    @IBSegueAction func addEditEmoji(_ coder: NSCoder, sender: Any?) -> AddEditEmojiTableViewController? {
+        if
+            let cell = sender as? UITableViewCell,
+            let indexPath = tableView.indexPath(for: cell)
+        {
+            // Editing Emoji
+            let emojiToEdit = emojis[indexPath.row]
+            return AddEditEmojiTableViewController(coder: coder, emoji: emojiToEdit)
+        } else {
+            // Adding Emoji
+            return AddEditEmojiTableViewController(coder: coder, emoji: nil)
+        }
     }
+    
     
     
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
