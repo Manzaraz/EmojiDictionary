@@ -203,7 +203,18 @@
                             <outlet property="delegate" destination="KHZ-Yx-rIy" id="5kD-sA-JJn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="2nf-d3-gPQ"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="2nf-d3-gPQ">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="MmF-5u-vQs">
+                            <connections>
+                                <segue destination="vGC-fh-3FI" kind="unwind" unwindAction="unwindToEmojiTableView:" id="XnR-yB-eou"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="RfG-rf-kOb">
+                            <connections>
+                                <segue destination="vGC-fh-3FI" kind="unwind" identifier="saveUnwind" unwindAction="unwindToEmojiTableView:" id="ayI-ww-hle"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="descriptionTextField" destination="ja9-99-vg0" id="56N-yR-65E"/>
                         <outlet property="nameTextField" destination="xNB-Qt-gia" id="BW2-1y-oyf"/>
@@ -212,6 +223,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3D5-K4-tD1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="vGC-fh-3FI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2421" y="-152"/>
         </scene>

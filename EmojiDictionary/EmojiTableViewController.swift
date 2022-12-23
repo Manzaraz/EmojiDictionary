@@ -56,9 +56,6 @@ class EmojiTableViewController:  UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
-    
-    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -99,6 +96,11 @@ class EmojiTableViewController:  UITableViewController {
         }
     }
     
+    
+    @IBAction func unwindToEmojiTableView (_ unwindSegue: UIStoryboardSegue) {
+        let sourceViewController = unwindSegue.source
+        // Use data from the view controller which initiated the unwind segue
+    }
     
     
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
