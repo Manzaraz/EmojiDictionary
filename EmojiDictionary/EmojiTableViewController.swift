@@ -46,9 +46,11 @@ class EmojiTableViewController:  UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
         navigationItem.leftBarButtonItem = editButtonItem
+        
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 44.0
+        
     }
 
     // MARK: - Table view data source
