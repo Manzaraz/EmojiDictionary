@@ -46,9 +46,11 @@ class EmojiTableViewController:  UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
         navigationItem.leftBarButtonItem = editButtonItem
+        
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 44.0
+        
     }
 
     // MARK: - Table view data source
@@ -56,7 +58,7 @@ class EmojiTableViewController:  UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 0 {
@@ -82,10 +84,37 @@ class EmojiTableViewController:  UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let emoji = emojis[indexPath.row]
-        print("\(emoji.symbol) \(indexPath)")
+    @IBSegueAction func addEditEmoji(_ coder: NSCoder, sender: Any?) -> AddEditEmojiTableViewController? {
+        if
+            let cell = sender as? UITableViewCell,
+            let indexPath = tableView.indexPath(for: cell)
+        {
+            // Editing Emoji
+            let emojiToEdit = emojis[indexPath.row]
+            return AddEditEmojiTableViewController(coder: coder, emoji: emojiToEdit)
+        } else {
+            // Adding Emoji
+            return AddEditEmojiTableViewController(coder: coder, emoji: nil)
+        }
     }
+    
+    
+    @IBAction func  unwindToEmojiTableView(segue: UIStoryboardSegue) {
+            guard segue.identifier == "saveUnwind",
+                let sourceViewController = segue.source
+                   as? AddEditEmojiTableViewController,
+                let emoji = sourceViewController.emoji else { return }
+        
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                emojis[selectedIndexPath.row] = emoji
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            } else {
+                let newIndexPath = IndexPath(row: emojis.count, section: 0)
+                emojis.append(emoji)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        }
+        
     
     
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
