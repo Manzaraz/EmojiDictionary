@@ -57,7 +57,6 @@ struct Emoji: Codable {
             print("Error decoding emoji: \(error)")
             return nil
         }
-    }
-    
+    } 
     
 }
